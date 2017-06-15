@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Gra</groupId>
+  <artifactId>Blackjack</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Gra projekt java BlackJack</name>
+  <inceptionYear>2017</inceptionYear>
+  <organization>
+  	<name>Rafał Warzyński. Michał Borzęcki</name>
+  </organization>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+</project>
