@@ -1,10 +1,14 @@
 package src;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 
 public class Blackjack {
@@ -15,8 +19,10 @@ public class Blackjack {
 	
 	
 	
-	private static JButton btnNewGame;  // przycisk nowa gra
-	private static JButton btnEndGame;  // przycisk koniec gry
+	private static JButton btnNewGame;	//	przycisk nowa gra
+	private static JButton btnEndGame;	//	przycisk koniec gry
+	private static JTextField tfBalance;	//	pole tekstowe do zapisania kasy ktora mamy na poczatku
+	private static JLabel lblInitialBalance;  // tekst do pczatkowej kasy
 	
 	
 	
@@ -41,8 +47,19 @@ public class Blackjack {
 				initGuiObjects(); // restart mechaniki gry..
 			}
 		});
-		
 		frame.getContentPane().add(btnEndGame);
+		
+		tfBalance = new JTextField(); //pole tekstowe do zapisania początkowej kasy
+		tfBalance.setText("100");
+		tfBalance.setBounds(150, 580, 89, 28);
+		frame.getContentPane().add(tfBalance);
+		tfBalance.setColumns(10);
+		
+		lblInitialBalance = new JLabel("Ile chcesz kasy?:"); // napiss przy belce kasy
+		lblInitialBalance.setFont(new Font("Arial", Font.BOLD, 13));
+		lblInitialBalance.setForeground(Color.WHITE);
+		lblInitialBalance.setBounds(10, 586, 250, 16);
+		frame.getContentPane().add(lblInitialBalance);
 		
 		
 	}
