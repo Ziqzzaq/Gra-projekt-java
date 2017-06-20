@@ -60,11 +60,11 @@ public class Blackjack {
 		frame.getContentPane().add(tfBalance);
 		tfBalance.setColumns(10);
 		
-		lblInitialBalance = new JLabel("Ile chcesz kasy?:"); // napiss przy belce kasy
-		lblInitialBalance.setFont(new Font("Arial", Font.BOLD, 13));
-		lblInitialBalance.setForeground(Color.WHITE);
-		lblInitialBalance.setBounds(10, 586, 250, 16);
-		frame.getContentPane().add(lblInitialBalance);
+		lblEnterBet = new JLabel("Ile chcesz kasy?:"); // napiss przy belce kasy
+		lblEnterBet.setFont(new Font("Arial", Font.BOLD, 13));
+		lblEnterBet.setForeground(Color.WHITE);
+		lblEnterBet.setBounds(500, 500, 250, 16);
+		frame.getContentPane().add(lblEnterBet);
 		
 		
 	}
@@ -73,11 +73,11 @@ public class Blackjack {
 		
 		
 		
-		lblEnterBet = new JLabel("Ile obstawisz?:"); // napis nie dziala
-		lblEnterBet.setFont(new Font("Arial", Font.BOLD, 14));
-		lblEnterBet.setForeground(Color.WHITE);
-		lblEnterBet.setBounds(689, 586, 100, 16);
-		frame.getContentPane().add(lblEnterBet);
+		lblInitialBalance = new JLabel("Ile chcesz kasy?:"); // napiss przy belce kasy
+		lblInitialBalance.setFont(new Font("Arial", Font.BOLD, 13));
+		lblInitialBalance.setForeground(Color.WHITE);
+		lblInitialBalance.setBounds(10, 586, 250, 16);
+		frame.getContentPane().add(lblInitialBalance);
 		
 		
 		tfBetAmount = new JTextField(); // ile osbstawisz 
@@ -86,7 +86,7 @@ public class Blackjack {
 		frame.getContentPane().add(tfBetAmount);
 		
 		
-		btnDeal = new JButton("Deal"); // Deal button
+		btnDeal = new JButton("Deal"); // Deal button :D
 		btnDeal.setBounds(679, 610, 200, 50);
 		btnDeal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
