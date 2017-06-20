@@ -24,6 +24,9 @@ public class Blackjack {
 	private static JTextField tfBalance;	//	pole tekstowe do zapisania kasy ktora mamy na poczatku
 	private static JLabel lblInitialBalance;  // tekst do pczatkowej kasy
 	
+	
+	private static JLabel lblEnterBet; // napis
+	private static JTextField tfBetAmount; // pole do wpisywania ile obstawisz
 	private static JButton btnDeal;  // przycisk do obstawiania
 	
 	
@@ -67,6 +70,20 @@ public class Blackjack {
 	}
 	
 	public static void showBetGui() {  // funkcja do przycisków obstawiania  po prawej stronie
+		
+		
+		
+		lblEnterBet = new JLabel("Ile obstawisz?:"); // napis nie dziala
+		lblEnterBet.setFont(new Font("Arial", Font.BOLD, 14));
+		lblEnterBet.setForeground(Color.WHITE);
+		lblEnterBet.setBounds(689, 586, 100, 16);
+		frame.getContentPane().add(lblEnterBet);
+		
+		
+		tfBetAmount = new JTextField(); // ile osbstawisz 
+		tfBetAmount.setText("10");
+		tfBetAmount.setBounds(790, 580, 89, 28);
+		frame.getContentPane().add(tfBetAmount);
 		
 		
 		btnDeal = new JButton("Deal"); // Deal button
