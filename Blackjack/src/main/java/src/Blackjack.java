@@ -24,13 +24,15 @@ public class Blackjack {
 	private static JTextField tfBalance;	//	pole tekstowe do zapisania kasy ktora mamy na poczatku
 	private static JLabel lblInitialBalance;  // tekst do pczatkowej kasy
 	
+	private static JButton btnDeal;  // przycisk do obstawiania
 	
 	
-	public static void initGuiObjects() {
+	
+	public static void initGuiObjects() { // ustawienie  głównych przyciskow po lewej stronie
 		btnNewGame = new JButton("New Game"); // przycisk nowa gra
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { // co się dzieje po wcisnieciu nowa gra
-				//newGame(); 
+				showBetGui();
 			}
 		});
 		
@@ -64,7 +66,20 @@ public class Blackjack {
 		
 	}
 	
-	
+	public static void showBetGui() {  // funkcja do przycisków obstawiania  po prawej stronie
+		
+		
+		btnDeal = new JButton("Deal"); // Deal button
+		btnDeal.setBounds(679, 610, 200, 50);
+		btnDeal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// cos sie stanie :D
+			}
+		});
+		frame.getContentPane().add(btnDeal);
+		btnDeal.requestFocus();
+		
+	}
 		
 	
 	public static void main(String[] args){
