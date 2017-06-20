@@ -5,9 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+
 
 public class Blackjack {
 	
@@ -17,8 +15,8 @@ public class Blackjack {
 	
 	
 	
-	private static JButton btnNewGame;
-	
+	private static JButton btnNewGame;  // przycisk nowa gra
+	private static JButton btnEndGame;  // przycisk koniec gry
 	
 	
 	
@@ -32,6 +30,21 @@ public class Blackjack {
 		
 		btnNewGame.setBounds(20, 610, 99, 50);
 		frame.getContentPane().add(btnNewGame);
+		
+		btnEndGame = new JButton("End Game"); // przycisk konca gry i resetuje program.
+		btnEndGame.setEnabled(false);  // na razie go wylacze
+		btnEndGame.setBounds(121, 610, 99, 50);
+		btnEndGame.addActionListener(new ActionListener() {  // co sie dzieje po nacisnieciu end game
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll(); // usuwanie wszystkich elementow z ekranu
+				frame.repaint(); // powtarzanie aby wyswietlic to co sie zmienilo
+				initGuiObjects(); // restart mechaniki gry..
+			}
+		});
+		
+		frame.getContentPane().add(btnEndGame);
+		
+		
 	}
 	
 	
