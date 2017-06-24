@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -25,7 +26,12 @@ public class Blackjack {
 	private static JTextField tfBalance;	//	pole tekstowe do zapisania kasy ktora mamy na poczatku
 	private static JLabel lblInitialBalance;  // tekst do pczatkowej kasy
 	
+	private static double kieszen = 0.0; // zapis ile masz w banku
+	
 	private static JLabel lblHowInitial; // napisy ile ma
+	private static JLabel lblHowKasaWKieszeni;  // ile masz kasy w kieszeni
+	
+	private static JLabel lblPrzedstawienie; // napis nasz ze projetk
 	
 	
 	private static JLabel lblEnterBet; // napis
@@ -38,7 +44,7 @@ public class Blackjack {
 		btnNewGame = new JButton("New Game"); // przycisk nowa gra
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { // co się dzieje po wcisnieciu nowa gra
-				showBetGui();
+				newGame(); 
 			}
 		});
 		
@@ -70,6 +76,18 @@ public class Blackjack {
 		frame.getContentPane().add(lblInitialBalance);
 		
 		
+		lblPrzedstawienie = new JLabel("Projekt z Java."); // takie se wstawilem napisy u gory
+		lblPrzedstawienie.setBackground(Color.ORANGE);
+		lblPrzedstawienie.setOpaque(false);
+		lblPrzedstawienie.setForeground(Color.ORANGE);
+		lblPrzedstawienie.setFont(new Font("Arial", Font.BOLD, 16));
+		lblPrzedstawienie.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPrzedstawienie.setBounds(290, 5, 320, 28);
+		frame.getContentPane().add(lblPrzedstawienie);
+		
+		
+		
+		
 	}
 	
 	public static void showBetGui() {  // funkcja do przycisków obstawiania  po prawej stronie
@@ -95,6 +113,15 @@ public class Blackjack {
 		frame.getContentPane().add(lblHowInitial);
 		
 		
+		lblHowKasaWKieszeni = new JLabel(); // pokazuje ile masz kasy w kieszeni
+		lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));
+		lblHowKasaWKieszeni.setForeground(Color.ORANGE);
+		lblHowKasaWKieszeni.setFont(new Font("Arial", Font.BOLD, 40));
+		lblHowKasaWKieszeni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHowKasaWKieszeni.setBounds(315, 600, 272, 50);
+		frame.getContentPane().add(lblHowKasaWKieszeni);
+		
+		
 		
 		
 		
@@ -116,6 +143,38 @@ public class Blackjack {
 		
 		
 		frame.repaint();
+	}
+	
+	
+	public static boolean convertStringtoInt(String s) { // zmiana ze stringa na inta w polu tekstowym tfBalance musi byc liczba calkowita
+		try {
+			if (Integer.parseInt(s) > 0) // Ensure amount entered is > 0
+				return true;
+			else
+				return false;
+		} catch (NumberFormatException e) { // If not valid integer
+			return false;
+		}
+	}
+	
+	
+	
+	
+	public static void newGame(){ // nowa funkcja zapisze bo ci nie chce psuc Michal
+		
+		if (convertStringtoInt(tfBalance.getText()) == true) { // sprawdzanie czy kasa sie zgadza
+			kieszen = Integer.parseInt(tfBalance.getText());
+		} else {
+			JOptionPane.showMessageDialog(frame, "Nie prawidlowa waga... czy jest to liczba całkowita??.", "Error", JOptionPane.ERROR_MESSAGE);
+			tfBalance.requestFocus();
+			return;
+		}
+
+		btnNewGame.setEnabled(false);
+		tfBalance.setEnabled(false);
+		
+		showBetGui();  // i dopiero odpalimy Gui po prawej
+		
 	}
 		
 	
