@@ -10,4 +10,9 @@ public class Card { // Ta klasa jest tworzona dla każdej karty i przechowuje in
 			this.suit = s;
 			this.value = v;
 		}
+		
+		public void print() { // Wyswietla informacje o karcie w konsoli- pomocne przy debugowaniu 
+			System.out.printf("%s of %s, value %d\n", this.rank, this.suit, this.value);
+		}
+
 }
