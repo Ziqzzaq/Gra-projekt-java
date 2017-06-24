@@ -48,12 +48,12 @@ public class Blackjack {
 			}
 		});
 		
-		btnNewGame.setBounds(20, 610, 99, 50);
+		btnNewGame.setBounds(20, 610, 120, 50);
 		frame.getContentPane().add(btnNewGame);
 		
 		btnEndGame = new JButton("End Game"); // przycisk konca gry i resetuje program.
 		btnEndGame.setEnabled(false);  // na razie go wylacze
-		btnEndGame.setBounds(121, 610, 99, 50);
+		btnEndGame.setBounds(150, 610, 120, 50);
 		btnEndGame.addActionListener(new ActionListener() {  // co sie dzieje po nacisnieciu end game
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll(); // usuwanie wszystkich elementow z ekranu
@@ -65,14 +65,14 @@ public class Blackjack {
 		
 		tfBalance = new JTextField(); //pole tekstowe do zapisania początkowej kasy
 		tfBalance.setText("100");
-		tfBalance.setBounds(150, 580, 89, 28);
+		tfBalance.setBounds(180, 580, 89, 28);
 		frame.getContentPane().add(tfBalance);
 		tfBalance.setColumns(10);
 		
-		lblInitialBalance = new JLabel("Ile chcesz kasy?:"); // napiss przy belce kasy
+		lblInitialBalance = new JLabel("Ile masz w portfelu?"); // napiss przy belce kasy
 		lblInitialBalance.setFont(new Font("Arial", Font.BOLD, 13));
 		lblInitialBalance.setForeground(Color.WHITE);
-		lblInitialBalance.setBounds(10, 585, 250, 16);
+		lblInitialBalance.setBounds(20, 585, 250, 16);
 		frame.getContentPane().add(lblInitialBalance);
 		
 		
@@ -96,7 +96,7 @@ public class Blackjack {
 		
 		//juz dziala brakowalo na koncu funkcji frame.repaint();
 		
-		lblEnterBet = new JLabel("Kasa:"); // napis przy belce do obstawiania
+		lblEnterBet = new JLabel("Stawka:"); // napis przy belce do obstawiania
 		lblEnterBet.setFont(new Font("Arial", Font.BOLD, 14));
 		lblEnterBet.setForeground(Color.WHITE);
 		lblEnterBet.setBounds(700, 585, 250, 16);
@@ -105,7 +105,7 @@ public class Blackjack {
 		
 		
 
-		lblHowInitial = new JLabel("W Kasie masz"); // napis
+		lblHowInitial = new JLabel("Pozostało środków:"); // napis
 		lblHowInitial.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHowInitial.setFont(new Font("Arial", Font.BOLD, 16));
 		lblHowInitial.setForeground(Color.WHITE);
