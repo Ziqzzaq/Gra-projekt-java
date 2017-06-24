@@ -32,7 +32,7 @@ public class Blackjack {
 	private static JLabel lblHowKasaWKieszeni;  // ile masz kasy w kieszeni
 	
 	private static JLabel lblPrzedstawienie; // napis nasz ze projetk
-	
+
 	
 	private static JLabel lblEnterBet; // napis
 	private static JTextField tfBetAmount; // pole do wpisywania ile obstawisz
@@ -176,7 +176,10 @@ public class Blackjack {
 		showBetGui();  // i dopiero odpalimy Gui po prawej
 		
 	}
+	public static void deal() { // Runs when the Deal button is pressed. Draws two player and dealer cards (only displaying one of the dealer's cards) and asks for an action from the player, or if there's an immediate outcome (eg. blackjack straight away), it takes action
+
 		
+		}
 	
 	public static void main(String[] args){
 
