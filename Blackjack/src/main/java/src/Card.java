@@ -16,6 +16,8 @@ public class Card { // Ta klasa jest tworzona dla każdej karty i przechowuje in
 		}
 		
 		public String getFileName() { //Pobranie nazwy pliku obrazu dla karty
+			if (value == 0) //Jeżeli wartość karty wynosi 0 tzn, że jest odwrócona i należy przypisać jej odpowiedni obrazek
+				return "cardImages/backCover.png";
 			return String.format("cardImages/%s/%s.png", this.suit,this.rank);
 		}
 
