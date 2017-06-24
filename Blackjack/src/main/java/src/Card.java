@@ -14,5 +14,9 @@ public class Card { // Ta klasa jest tworzona dla każdej karty i przechowuje in
 		public void print() { // Wyswietla informacje o karcie w konsoli- pomocne przy debugowaniu 
 			System.out.printf("%s of %s, value %d\n", this.rank, this.suit, this.value);
 		}
+		
+		public String getFileName() { //Pobranie nazwy pliku obrazu dla karty
+			return String.format("cardImages/%s/%s.png", this.suit,this.rank);
+		}
 
 }
