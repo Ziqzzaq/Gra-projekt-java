@@ -8,7 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 
 public class Blackjack {
@@ -24,6 +26,13 @@ public class Blackjack {
 	private static JTextField tfBalance;	//	pole tekstowe do zapisania kasy ktora mamy na poczatku
 	private static JLabel lblInitialBalance;  // tekst do pczatkowej kasy
 	
+	private static double kieszen = 0.0; // zapis ile masz w banku
+	
+	private static JLabel lblHowInitial; // napisy ile ma
+	private static JLabel lblHowKasaWKieszeni;  // ile masz kasy w kieszeni
+	
+	private static JLabel lblPrzedstawienie; // napis nasz ze projetk
+
 	
 	private static JLabel lblEnterBet; // napis
 	private static JTextField tfBetAmount; // pole do wpisywania ile obstawisz
@@ -35,16 +44,16 @@ public class Blackjack {
 		btnNewGame = new JButton("New Game"); // przycisk nowa gra
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { // co się dzieje po wcisnieciu nowa gra
-				showBetGui();
+				newGame(); 
 			}
 		});
 		
-		btnNewGame.setBounds(20, 610, 99, 50);
+		btnNewGame.setBounds(20, 610, 120, 50);
 		frame.getContentPane().add(btnNewGame);
 		
 		btnEndGame = new JButton("End Game"); // przycisk konca gry i resetuje program.
 		btnEndGame.setEnabled(false);  // na razie go wylacze
-		btnEndGame.setBounds(121, 610, 99, 50);
+		btnEndGame.setBounds(150, 610, 120, 50);
 		btnEndGame.addActionListener(new ActionListener() {  // co sie dzieje po nacisnieciu end game
 			public void actionPerformed(ActionEvent e) {
 				frame.getContentPane().removeAll(); // usuwanie wszystkich elementow z ekranu
@@ -56,28 +65,64 @@ public class Blackjack {
 		
 		tfBalance = new JTextField(); //pole tekstowe do zapisania początkowej kasy
 		tfBalance.setText("100");
-		tfBalance.setBounds(150, 580, 89, 28);
+		tfBalance.setBounds(180, 580, 89, 28);
 		frame.getContentPane().add(tfBalance);
 		tfBalance.setColumns(10);
 		
-		lblEnterBet = new JLabel("Ile chcesz kasy?:"); // napiss przy belce kasy
-		lblEnterBet.setFont(new Font("Arial", Font.BOLD, 13));
-		lblEnterBet.setForeground(Color.WHITE);
-		lblEnterBet.setBounds(500, 500, 250, 16);
-		frame.getContentPane().add(lblEnterBet);
+		lblInitialBalance = new JLabel("Ile masz w portfelu?"); // napiss przy belce kasy
+		lblInitialBalance.setFont(new Font("Arial", Font.BOLD, 13));
+		lblInitialBalance.setForeground(Color.WHITE);
+		lblInitialBalance.setBounds(20, 585, 250, 16);
+		frame.getContentPane().add(lblInitialBalance);
+		
+		
+		lblPrzedstawienie = new JLabel("Projekt z Java."); // takie se wstawilem napisy u gory
+		lblPrzedstawienie.setBackground(Color.ORANGE);
+		lblPrzedstawienie.setOpaque(false);
+		lblPrzedstawienie.setForeground(Color.ORANGE);
+		lblPrzedstawienie.setFont(new Font("Arial", Font.BOLD, 16));
+		lblPrzedstawienie.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPrzedstawienie.setBounds(290, 5, 320, 28);
+		frame.getContentPane().add(lblPrzedstawienie);
+		
+		
 		
 		
 	}
 	
 	public static void showBetGui() {  // funkcja do przycisków obstawiania  po prawej stronie
 		
+		btnEndGame.setEnabled(true);  // gdy new game to wączymy end game
+		
+		//juz dziala brakowalo na koncu funkcji frame.repaint();
+		
+		lblEnterBet = new JLabel("Stawka:"); // napis przy belce do obstawiania
+		lblEnterBet.setFont(new Font("Arial", Font.BOLD, 14));
+		lblEnterBet.setForeground(Color.WHITE);
+		lblEnterBet.setBounds(700, 585, 250, 16);
+		frame.getContentPane().add(lblEnterBet);
 		
 		
-		lblInitialBalance = new JLabel("Ile chcesz kasy?:"); // napiss przy belce kasy
-		lblInitialBalance.setFont(new Font("Arial", Font.BOLD, 13));
-		lblInitialBalance.setForeground(Color.WHITE);
-		lblInitialBalance.setBounds(10, 586, 250, 16);
-		frame.getContentPane().add(lblInitialBalance);
+		
+
+		lblHowInitial = new JLabel("Pozostało środków:"); // napis
+		lblHowInitial.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHowInitial.setFont(new Font("Arial", Font.BOLD, 16));
+		lblHowInitial.setForeground(Color.WHITE);
+		lblHowInitial.setBounds(315, 578, 272, 22);
+		frame.getContentPane().add(lblHowInitial);
+		
+		
+		lblHowKasaWKieszeni = new JLabel(); // pokazuje ile masz kasy w kieszeni
+		lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));
+		lblHowKasaWKieszeni.setForeground(Color.ORANGE);
+		lblHowKasaWKieszeni.setFont(new Font("Arial", Font.BOLD, 40));
+		lblHowKasaWKieszeni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHowKasaWKieszeni.setBounds(315, 600, 272, 50);
+		frame.getContentPane().add(lblHowKasaWKieszeni);
+		
+		
+		
 		
 		
 		tfBetAmount = new JTextField(); // ile osbstawisz 
@@ -96,8 +141,45 @@ public class Blackjack {
 		frame.getContentPane().add(btnDeal);
 		btnDeal.requestFocus();
 		
-	}
 		
+		frame.repaint();
+	}
+	
+	
+	public static boolean convertStringtoInt(String s) { // zmiana ze stringa na inta w polu tekstowym tfBalance musi byc liczba calkowita
+		try {
+			if (Integer.parseInt(s) > 0) // Ensure amount entered is > 0
+				return true;
+			else
+				return false;
+		} catch (NumberFormatException e) { // If not valid integer
+			return false;
+		}
+	}
+	
+	
+	
+	
+	public static void newGame(){ // nowa funkcja zapisze bo ci nie chce psuc Michal
+		
+		if (convertStringtoInt(tfBalance.getText()) == true) { // sprawdzanie czy kasa sie zgadza
+			kieszen = Integer.parseInt(tfBalance.getText());
+		} else {
+			JOptionPane.showMessageDialog(frame, "Nie prawidlowa waga... czy jest to liczba całkowita??.", "Error", JOptionPane.ERROR_MESSAGE);
+			tfBalance.requestFocus();
+			return;
+		}
+
+		btnNewGame.setEnabled(false);
+		tfBalance.setEnabled(false);
+		
+		showBetGui();  // i dopiero odpalimy Gui po prawej
+		
+	}
+	public static void deal() { // Runs when the Deal button is pressed. Draws two player and dealer cards (only displaying one of the dealer's cards) and asks for an action from the player, or if there's an immediate outcome (eg. blackjack straight away), it takes action
+
+		
+		}
 	
 	public static void main(String[] args){
 
