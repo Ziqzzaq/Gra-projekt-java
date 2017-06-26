@@ -1,12 +1,14 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class CardGroup {
-	
+
 	public ArrayList<Card> cards = new ArrayList<Card>(); // wstępna lista kart
-	
-	public void initFullDeck() {   // nadanie wartości kart
+
+	public void initFullDeck() { // nadanie wartości kart
 		this.cards.clear();
 		String[] ranks = { "As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Walet", "Dama", "Król" };
 		int[] rankValues = { 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
@@ -19,22 +21,30 @@ public class CardGroup {
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	public int getTotalValue() {  //metoda licząca sume wartosci kart 
+
+	public Card takeCard() { // Usuwa kartę z góry ArrayList i zwraca ją
+		if (this.cards.size() < 1) {
+			System.out.println("Error: no more cards!");
+			System.exit(0);
+		}
+		Card tempCard = this.cards.get(this.cards.size() - 1);
+		this.cards.remove(this.cards.size() - 1);
+		return tempCard;
+	}
+
+	public void shuffle() {
+		long seed = System.nanoTime(); // Ustalenie wartości random by przybliżyć jak najbardziej do rzeczywistego tasowania
+		Collections.shuffle(this.cards, new Random(seed)); // tasowanie Decku
+	}
+
+	public int getTotalValue() { // metoda licząca sume wartosci kart
 		int totalValue = 0;
 		for (int i = 0; i < this.cards.size(); i++)
 			totalValue += this.cards.get(i).value;
 		return totalValue;
 	}
-	
-	
-	
-	public int getNumAces() {  // jezeli jest as zwiększ zwroc 1 bo as robi coś specjalnego w blackjacku
+
+	public int getNumAces() { // jezeli jest As zwiększ NumAces bo As może przyjąc wartość 1 lub 11 w zależności od kart
 		int numAces = 0;
 		for (int i = 0; i < this.cards.size(); i++)
 			if (this.cards.get(i).rank == "As")
@@ -42,17 +52,14 @@ public class CardGroup {
 		return numAces;
 	}
 
-	public int getCount() {  // zwraca ilosć kart w liscie
+	public int getCount() { // zwraca ilosć kart w liscie
 		return this.cards.size();
 	}
 
-	public void print() {  // wyswietla karty w liscie
+	public void print() { // wyswietla karty w liscie
 		for (int i = 0; i < this.cards.size(); i++) {
 			this.cards.get(i).print();
 		}
 	}
-	
-	
-
 
 }
