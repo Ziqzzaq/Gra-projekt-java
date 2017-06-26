@@ -44,6 +44,9 @@ public class Blackjack {
 	private static JButton btnHit;
 	private static JButton btnStand;
 	
+	private static JLabel lblBetAmount;
+	private static JLabel lblBetAmountDesc;
+	
 	
 	public static void initGuiObjects() { // ustawienie  głównych przyciskow po lewej stronie
 		btnNewGame = new JButton("New Game"); // przycisk nowa gra
@@ -213,6 +216,34 @@ public class Blackjack {
 			
 			lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));  // wyswietlenie zmieniamy wartosc w naszej kieszeni po odjeciu tego co podstawiasz
 		
+			tfBetAmount.setEnabled(false);  // wylaczamy przyciski podczas gry
+			btnDeal.setEnabled(false);  
+
+			lblInfo.setText("Prosze wybrać HIT lub STAND"); // instrukcja do wyboru przycisku
+			
+			
+			
+			
+			
+			lblBetAmount = new JLabel(); //Pokaż kwotę zakładu
+			lblBetAmount.setText("$" + betAmount);
+			lblBetAmount.setHorizontalAlignment(SwingConstants.CENTER);
+			lblBetAmount.setForeground(Color.ORANGE);
+			lblBetAmount.setFont(new Font("Arial", Font.BOLD, 40));
+			lblBetAmount.setBounds(679, 488, 200, 50);
+			frame.getContentPane().add(lblBetAmount);
+
+			lblBetAmountDesc = new JLabel("Obstawiasz Za:"); // etykieta informacji dotyczących kwoty zakładu
+			lblBetAmountDesc.setHorizontalAlignment(SwingConstants.CENTER);
+			lblBetAmountDesc.setForeground(Color.WHITE);
+			lblBetAmountDesc.setFont(new Font("Arial", Font.BOLD, 16));
+			lblBetAmountDesc.setBounds(689, 465, 190, 22);
+			frame.getContentPane().add(lblBetAmountDesc);
+			
+			
+			
+			
+			
 			
 			
 			
