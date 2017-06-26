@@ -28,10 +28,14 @@ public class Blackjack {
 	
 	private static double kieszen = 0.0; // zapis ile masz w banku
 	
+	private static int betAmount = 0, roundCount = 0;  // zmienne do obstawiania
+	
 	private static JLabel lblHowInitial; // napisy ile ma
 	private static JLabel lblHowKasaWKieszeni;  // ile masz kasy w kieszeni
 	
 	private static JLabel lblPrzedstawienie; // napis nasz ze projetk
+	
+	private static JLabel lblInfo; // informacje o błedach itp.
 
 	
 	private static JLabel lblEnterBet; // napis
@@ -124,6 +128,17 @@ public class Blackjack {
 		
 		
 		
+		lblInfo = new JLabel("By grać dalej naciśnij Deal "); // napis do zmiany jeżeli będzie jakiś błąd
+		lblInfo.setBackground(Color.ORANGE);
+		lblInfo.setOpaque(false);
+		lblInfo.setForeground(Color.ORANGE);
+		lblInfo.setFont(new Font("Arial", Font.BOLD, 16));
+		lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInfo.setBounds(290, 482, 320, 28);
+		frame.getContentPane().add(lblInfo);
+
+		
+		
 		
 		
 		tfBetAmount = new JTextField(); // ile obstawisz 
@@ -178,6 +193,29 @@ public class Blackjack {
 		
 	}
 		public static void deal() { // Działa po naciśnięciu przycisku Deal. Przycisk Deal wstępnie ma wyswtietlic aktualna gre ale to sie zobaczy..
+			
+			
+			if (convertStringtoInt(tfBetAmount.getText()) == true) { // podanie wartosci do obstawianie z kieszerni w polu tekstowym zamieniamy ja na inty
+				betAmount = Integer.parseInt(tfBetAmount.getText());
+			} else {
+				lblInfo.setText("Podaj liczbe naturalną"); // jezeli to nie bedzie liczba lub cos wyswietl blad
+				tfBetAmount.requestFocus();
+				return;
+			}
+			
+			
+			if (betAmount > kieszen) { // jezeli chcemy obstawic wiecej niz mamy w kieszeni to error
+				lblInfo.setText("Nie masz tylu pieniędzy"); // nie masz tyle w kieszeni
+				tfBetAmount.requestFocus();
+				return;
+			}
+			kieszen -= betAmount; // usuwanie z kieszeni tyle ile obstawiamy
+			
+			lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));  // wyswietlenie zmieniamy wartosc w naszej kieszeni po odjeciu tego co podstawiasz
+		
+			
+			
+			
 			
 			btnHit = new JButton("Hit"); // Hit button
 			btnHit.setBounds(290, 200, 140, 35);
