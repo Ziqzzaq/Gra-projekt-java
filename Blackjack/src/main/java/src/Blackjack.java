@@ -126,7 +126,7 @@ public class Blackjack {
 		
 		
 		
-		tfBetAmount = new JTextField(); // ile osbstawisz 
+		tfBetAmount = new JTextField(); // ile obstawisz 
 		tfBetAmount.setText("10");
 		tfBetAmount.setBounds(790, 580, 89, 28);
 		frame.getContentPane().add(tfBetAmount);
