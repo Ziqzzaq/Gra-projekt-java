@@ -19,6 +19,40 @@ public class CardGroup {
 			}
 		}
 	}
+	
+	
+	
+	
+	
+	
+	public int getTotalValue() {  //metoda licząca sume wartosci kart 
+		int totalValue = 0;
+		for (int i = 0; i < this.cards.size(); i++)
+			totalValue += this.cards.get(i).value;
+		return totalValue;
+	}
+	
+	
+	
+	public int getNumAces() {  // jezeli jest as zwiększ zwroc 1 bo as robi coś specjalnego w blackjacku
+		int numAces = 0;
+		for (int i = 0; i < this.cards.size(); i++)
+			if (this.cards.get(i).rank == "As")
+				numAces++;
+		return numAces;
+	}
+
+	public int getCount() {  // zwraca ilosć kart w liscie
+		return this.cards.size();
+	}
+
+	public void print() {  // wyswietla karty w liscie
+		for (int i = 0; i < this.cards.size(); i++) {
+			this.cards.get(i).print();
+		}
+	}
+	
+	
 
 
 }
