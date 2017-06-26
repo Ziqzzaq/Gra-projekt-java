@@ -37,7 +37,8 @@ public class Blackjack {
 	private static JLabel lblEnterBet; // napis
 	private static JTextField tfBetAmount; // pole do wpisywania ile obstawisz
 	private static JButton btnDeal;  // przycisk do obstawiania
-	
+	private static JButton btnHit;
+	private static JButton btnStand;
 	
 	
 	public static void initGuiObjects() { // ustawienie  głównych przyciskow po lewej stronie
@@ -135,7 +136,7 @@ public class Blackjack {
 		btnDeal.setBounds(679, 610, 200, 50);
 		btnDeal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// cos sie stanie :D
+				deal();
 			}
 		});
 		frame.getContentPane().add(btnDeal);
@@ -176,10 +177,31 @@ public class Blackjack {
 		showBetGui();  // i dopiero odpalimy Gui po prawej
 		
 	}
-	public static void deal() { // Runs when the Deal button is pressed. Draws two player and dealer cards (only displaying one of the dealer's cards) and asks for an action from the player, or if there's an immediate outcome (eg. blackjack straight away), it takes action
+		public static void deal() { // Działa po naciśnięciu przycisku Deal. Przycisk Deal wstępnie ma wyswtietlic aktualna gre ale to sie zobaczy..
+			
+			btnHit = new JButton("Hit"); // Hit button
+			btnHit.setBounds(290, 200, 140, 35);
+			btnHit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					// cos po naciśnieciu
+				}
+			});
+			frame.getContentPane().add(btnHit);
+			btnHit.requestFocus();
 
-		
+			btnStand = new JButton("Stand"); // Stand button
+			btnStand.setBounds(470, 200, 140, 35);
+			btnStand.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					// cos po nacisnieciu
+				}
+			});
+			frame.getContentPane().add(btnStand);
+			btnStand.requestFocus();
+			frame.repaint();
 		}
+		
+		
 	
 	public static void main(String[] args){
 
