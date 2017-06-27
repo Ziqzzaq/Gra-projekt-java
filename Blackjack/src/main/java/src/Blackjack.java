@@ -294,7 +294,7 @@ public class Blackjack {
 			btnHit.setBounds(290, 515, 140, 35);
 			btnHit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					// cos po naciśnieciu
+					hit();
 				}
 			});
 			frame.getContentPane().add(btnHit);
@@ -383,6 +383,15 @@ public class Blackjack {
 					btnContinue.requestFocus();
 				}
 			}, 500);
+
+		}
+		
+		public static void hit() { // dodaje nowa karte do kart gracza i sprawdza wynik.
+
+			playerCards.cards.add(deck.takeCard());
+			updateCardPanels();
+
+			simpleOutcomes();
 
 		}
 		
