@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
 		setLayout(null);
 		setResizable(false);
 		
-		ImagePanel bgImagePanel = new ImagePanel("background.png");
+		ImagePanel bgImagePanel = new ImagePanel("src/main/resources/cardImages/background.png");
 		bgImagePanel.setBounds(0, 0, this.getWidth(), this.getHeight());
 		setContentPane(bgImagePanel);
 	}
