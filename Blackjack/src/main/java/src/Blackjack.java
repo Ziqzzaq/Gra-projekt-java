@@ -40,6 +40,7 @@ public class Blackjack {
 	
 	private static JLabel lblEnterBet; // napis
 	private static JTextField tfBetAmount; // pole do wpisywania ile obstawisz
+	private static JButton btnContinue;
 	private static JButton btnDeal;  // przycisk do obstawiania
 	private static JButton btnHit;
 	private static JButton btnStand;
@@ -275,7 +276,16 @@ public class Blackjack {
 			
 			
 			
-			
+			btnContinue = new JButton("Continue"); // Po osiągnięciu ostatecznego wyniku naciśnij przycisk, aby zaakceptować i kontynuować grę
+			btnContinue.setEnabled(false); // na razie wylaczony
+			btnContinue.setVisible(false);
+			btnContinue.setBounds(290, 444, 320, 35);
+			btnContinue.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					// cos sie stanie
+				}
+			});
+			frame.getContentPane().add(btnContinue);
 			
 			
 			btnHit = new JButton("Hit"); // Hit button
