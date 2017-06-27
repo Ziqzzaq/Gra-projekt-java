@@ -304,7 +304,7 @@ public class Blackjack {
 			btnStand.setBounds(470, 515, 140, 35);
 			btnStand.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					// cos po nacisnieciu
+					stand();
 				}
 			});
 			frame.getContentPane().add(btnStand);
@@ -395,6 +395,47 @@ public class Blackjack {
 
 		}
 		
+		public static void stand() { // Kiedy przyciśniety standButton
+			if (simpleOutcomes()) // Sprawdza wyniki 
+				return;
+
+			int playerScore = playerCards.getTotalValue(); // Wynik jaki uzyskał gracz
+			if (playerScore > 21 && playerCards.getNumAces() > 0) // //jezeli gracz ma wynik powyzej 21 i jednoczesnie wartosc asa jest powyzej 0 dodaj do wyniku gracza 10
+				playerScore -= 10;
+
+			dealerCards.cards.set(0, dealerHiddenCard); // zamiana karty schowanej z aktualna kartą
+
+			int dealerScore = dealerCards.getTotalValue(); // Wynik jaki uzyskał dealer
+
+			while (dealerScore < 16) { // Jeżeli dealer na ręce ma karty o wartości poniżej 16, musi wziąć więcej kard aż nie osiągnie wyniku powyżej 16 
+				dealerCards.cards.add(deck.takeCard()); // Weż kartę z góry decku i dodaj 
+				dealerScore = dealerCards.getTotalValue();
+				if (dealerScore > 21 && dealerCards.getNumAces() > 0) // Jeżeli jest As i wartość kart wynosi ponieżej 21 to odejmij 10
+					dealerScore -= 10;
+			}
+			updateCardPanels(); // Wyswietl nowe karty dealera
+
+			// Określ ostateczne rezultaty, dodaj zysk i jeśli jest pokaż wynik
+			if (playerScore > dealerScore) { // Gracz wygrał
+				lblInfo.setText("Player wins! Profit: $" + betAmount);
+				kieszen += betAmount * 2;
+				lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));
+			} else if (dealerScore == 21) { // Dealer blackjack
+				lblInfo.setText("Dealer gets Blackjack! Loss: $" + betAmount);
+			} else if (dealerScore > 21) { // Dealer bust
+				lblInfo.setText("Dealer goes Bust! Profit: $" + betAmount);
+				kieszen += betAmount * 2;
+				lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));
+			} else if (playerScore == dealerScore) { // Remis
+				lblInfo.setText("Push!");
+				kieszen += betAmount;
+				lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));
+			} else { // Dealer wygrał
+				lblInfo.setText("Dealer Wins! Loss: $" + betAmount);
+			}
+			outcomeHappened(); // Ina koniec rundy wyswietl rezultat i przycisk continue
+
+		}
 		
 		
 		public static void updateCardPanels() { // wyswietla karty przeciwnika i odtwarza obraz
