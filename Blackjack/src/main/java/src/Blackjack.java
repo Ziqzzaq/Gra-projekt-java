@@ -46,7 +46,7 @@ public class Blackjack {
 	
 	private static JLabel lblBetAmount;
 	private static JLabel lblBetAmountDesc;
-	
+	private static JLabel lblShuffleInfo = null;
 	
 	public static void initGuiObjects() { // ustawienie  głównych przyciskow po lewej stronie
 		btnNewGame = new JButton("New Game"); // przycisk nowa gra
@@ -198,6 +198,7 @@ public class Blackjack {
 		public static void deal() { // Działa po naciśnięciu przycisku Deal. Przycisk Deal wstępnie ma wyswtietlic aktualna gre ale to sie zobaczy..
 			
 			
+			
 			if (convertStringtoInt(tfBetAmount.getText()) == true) { // podanie wartosci do obstawianie z kieszerni w polu tekstowym zamieniamy ja na inty
 				betAmount = Integer.parseInt(tfBetAmount.getText());
 			} else {
@@ -233,7 +234,7 @@ public class Blackjack {
 			lblBetAmount.setBounds(679, 488, 200, 50);
 			frame.getContentPane().add(lblBetAmount);
 
-			lblBetAmountDesc = new JLabel("Obstawiasz Za:"); // etykieta informacji dotyczących kwoty zakładu
+			lblBetAmountDesc = new JLabel("Grasz Za:"); // etykieta informacji dotyczących kwoty zakładu
 			lblBetAmountDesc.setHorizontalAlignment(SwingConstants.CENTER);
 			lblBetAmountDesc.setForeground(Color.WHITE);
 			lblBetAmountDesc.setFont(new Font("Arial", Font.BOLD, 16));
