@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -326,7 +328,23 @@ public class Blackjack {
 			
 		}
 		
-		
+		public static void outcomeHappened() { //Wyswietla przycisk continue i rezultat
+			btnHit.setEnabled(false);
+			btnStand.setEnabled(false);
+
+			// Efekty ramki
+			lblInfo.setOpaque(true);
+			lblInfo.setForeground(Color.RED);
+			new Timer().schedule(new TimerTask() {
+				@Override
+				public void run() {
+					btnContinue.setEnabled(true);
+					btnContinue.setVisible(true);
+					btnContinue.requestFocus();
+				}
+			}, 500);
+
+		}
 		
 		
 		
