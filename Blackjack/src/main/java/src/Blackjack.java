@@ -195,7 +195,7 @@ public class Blackjack {
 		if (convertStringtoInt(tfBalance.getText()) == true) { // sprawdzanie czy kasa sie zgadza
 			kieszen = Integer.parseInt(tfBalance.getText());
 		} else {
-			JOptionPane.showMessageDialog(frame, "Nie prawidlowa waga... czy jest to liczba całkowita??.", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(frame, "Liczba nie poprawna!!!", "Nie oszukuj", JOptionPane.ERROR_MESSAGE);
 			tfBalance.requestFocus();
 			return;
 		}
@@ -417,13 +417,13 @@ public class Blackjack {
 
 			// Określ ostateczne rezultaty, dodaj zysk i jeśli jest pokaż wynik
 			if (playerScore > dealerScore) { // Gracz wygrał
-				lblInfo.setText("Player wins! Profit: $" + betAmount);
+				lblInfo.setText("Wygrałeś! Zysk: $" + betAmount);
 				kieszen += betAmount * 2;
 				lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));
 			} else if (dealerScore == 21) { // Dealer blackjack
-				lblInfo.setText("Dealer gets Blackjack! Loss: $" + betAmount);
+				lblInfo.setText("Dealer ma BlackJack! Strata: $" + betAmount);
 			} else if (dealerScore > 21) { // Dealer bust
-				lblInfo.setText("Dealer goes Bust! Profit: $" + betAmount);
+				lblInfo.setText("Dealer przekroczył 21! Zysk: $" + betAmount);
 				kieszen += betAmount * 2;
 				lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));
 			} else if (playerScore == dealerScore) { // Remis
@@ -431,7 +431,7 @@ public class Blackjack {
 				kieszen += betAmount;
 				lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));
 			} else { // Dealer wygrał
-				lblInfo.setText("Dealer Wins! Loss: $" + betAmount);
+				lblInfo.setText("Dealer wygrał! Strata: $" + betAmount);
 			}
 			outcomeHappened(); // Ina koniec rundy wyswietl rezultat i przycisk continue
 
