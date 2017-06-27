@@ -328,6 +328,46 @@ public class Blackjack {
 			
 		}
 		
+		
+		
+		public static boolean simpleOutcomes() { 
+			
+			boolean outcomeHasHappened = false;
+			int playerScore = playerCards.getTotalValue(); // pobranie calej wartosci kart gracza
+			
+			if (playerScore > 21 && playerCards.getNumAces() > 0)
+				playerScore -= 10;									//jezeli gracz ma wynik powyzej 21 i jednoczesnie wartosc asa jest powyzej 0 dodaj do wyniku gracza 10
+
+			if (playerScore == 21) { // jezeli ma 21 to koniec bo wygral
+
+				dealerCards.cards.set(0, dealerHiddenCard); // Zamiana schowanej karty dealera z aktualna karta
+				updateCardPanels(); // wyswietlenie nowej karty
+				if (dealerCards.getTotalValue() == 21) { // jezeli dealer ma black jacka to koniec
+					lblInfo.setText("Remis"); // jezeli 2 osoby maja blackjack
+					kieszen += betAmount; // Give bet back to player
+				} else {
+					// Jezeli tylko gracz ma blackjack
+					lblInfo.setText(String.format("Masz Blackjack!! ZYSK - $%.2f", 1.5f * betAmount));
+					kieszen += 2.5f * betAmount; // dodanie zysku do portfela
+				}
+				lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen)); // Wyswietl nowa kieszen
+
+				outcomeHasHappened = true;
+				outcomeHappened();//na koniec rundy wyswietl rezultat i przycisk continue
+				
+			} else if (playerScore > 21) { // jezeli gracz przekroczyl 21 to
+				lblInfo.setText("Przekroczyles 21! Strata: $" + betAmount);
+				dealerCards.cards.set(0, dealerHiddenCard); // zamiana karty schowanej z aktualna kartą
+				updateCardPanels();
+				outcomeHasHappened = true;
+				outcomeHappened(); //na koniec rundy wyswietl rezultat i przycisk continue
+			}
+			return outcomeHasHappened;
+
+		}
+		
+		
+		
 		public static void outcomeHappened() { //Wyswietla przycisk continue i rezultat
 			btnHit.setEnabled(false);
 			btnStand.setEnabled(false);
