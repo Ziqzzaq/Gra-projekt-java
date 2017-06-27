@@ -50,6 +50,9 @@ public class Blackjack {
 	
 	private static CardGroup deck, dealerCards, playerCards;
 	
+	private static CardGroupPanel dealerCardPanel = null, playerCardPanel = null; // talia kart,  dealera i gracza, panele do kart
+	private static Card dealerHiddenCard; 
+	
 	private static JLabel lblDealer;
 	private static JLabel lblPlayer;
 	
@@ -199,6 +202,12 @@ public class Blackjack {
 		
 		showBetGui();  // i dopiero odpalimy Gui po prawej
 		
+		roundCount = 0;
+
+		deck = new CardGroup(); // inicjalizacja kart przeciwnika
+		deck.initFullDeck(); // dodawanie wszystkich kart (52)
+		deck.shuffle(); // tasowanie kart
+		
 	}
 		public static void deal() { // Działa po naciśnięciu przycisku Deal. Przycisk Deal wstępnie ma wyswtietlic aktualna gre ale to sie zobaczy..
 			
@@ -288,8 +297,43 @@ public class Blackjack {
 			});
 			frame.getContentPane().add(btnStand);
 			btnStand.requestFocus();
+			
+			frame.repaint();
+			
+			
+			dealerHiddenCard = deck.takeCard(); // Weź kartę z talii  dealera, ale ukrywaj ją
+			dealerCards.cards.add(new Card("", "", 0)); // Dodaj odwróconą kartę do kart dealera
+			dealerCards.cards.add(deck.takeCard()); // dodaj karte
+
+			
+			// dodanie 2 kart z góry talii gracza
+			playerCards.cards.add(deck.takeCard());
+			playerCards.cards.add(deck.takeCard());
+			
+			
+			updateCardPanels(); 
+			
+			
+		}
+		
+		
+		
+		
+		
+		public static void updateCardPanels() { // wyswietla karty przeciwnika i odtwarza obraz
+			if (dealerCardPanel != null) { // jezeli już jest dodane usuwa je
+				frame.getContentPane().remove(dealerCardPanel);
+				frame.getContentPane().remove(playerCardPanel);
+			}
+			// tworzymy 2 panele
+			dealerCardPanel = new CardGroupPanel(dealerCards, 420 - (dealerCards.getCount() * 40), 50, 70, 104, 10);
+			frame.getContentPane().add(dealerCardPanel);
+			playerCardPanel = new CardGroupPanel(playerCards, 420 - (playerCards.getCount() * 40), 300, 70, 104, 10);
+			frame.getContentPane().add(playerCardPanel);
 			frame.repaint();
 		}
+
+		
 		
 		
 	
