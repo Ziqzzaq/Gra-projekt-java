@@ -48,6 +48,11 @@ public class Blackjack {
 	private static JLabel lblBetAmountDesc;
 	private static JLabel lblShuffleInfo = null;
 	
+	private static CardGroup deck, dealerCards, playerCards;
+	
+	private static JLabel lblDealer;
+	private static JLabel lblPlayer;
+	
 	public static void initGuiObjects() { // ustawienie  głównych przyciskow po lewej stronie
 		btnNewGame = new JButton("New Game"); // przycisk nowa gra
 		btnNewGame.addActionListener(new ActionListener() {
@@ -197,7 +202,12 @@ public class Blackjack {
 	}
 		public static void deal() { // Działa po naciśnięciu przycisku Deal. Przycisk Deal wstępnie ma wyswtietlic aktualna gre ale to sie zobaczy..
 			
-			
+			if (lblShuffleInfo != null) // (Every 5 rounds the deck is reshuffled and this label is displayed. Hide it when a new round is started
+				frame.getContentPane().remove(lblShuffleInfo);
+
+			// Initialise dealer/player card arrays
+			dealerCards = new CardGroup();
+			playerCards = new CardGroup();
 			
 			if (convertStringtoInt(tfBetAmount.getText()) == true) { // podanie wartosci do obstawianie z kieszerni w polu tekstowym zamieniamy ja na inty
 				betAmount = Integer.parseInt(tfBetAmount.getText());
@@ -223,7 +233,17 @@ public class Blackjack {
 			lblInfo.setText("Prosze wybrać HIT lub STAND"); // instrukcja do wyboru przycisku
 			
 			
-			
+			lblDealer = new JLabel("Dealer"); // Dealer label
+			lblDealer.setForeground(Color.WHITE);
+			lblDealer.setFont(new Font("Arial Black", Font.BOLD, 20));
+			lblDealer.setBounds(415, 158, 82, 28);
+			frame.getContentPane().add(lblDealer);
+
+			lblPlayer = new JLabel("Player"); // Player label
+			lblPlayer.setForeground(Color.WHITE);
+			lblPlayer.setFont(new Font("Arial Black", Font.BOLD, 20));
+			lblPlayer.setBounds(415, 266, 82, 28);
+			frame.getContentPane().add(lblPlayer);
 			
 			
 			lblBetAmount = new JLabel(); //Pokaż kwotę zakładu
@@ -250,7 +270,7 @@ public class Blackjack {
 			
 			
 			btnHit = new JButton("Hit"); // Hit button
-			btnHit.setBounds(290, 200, 140, 35);
+			btnHit.setBounds(290, 515, 140, 35);
 			btnHit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// cos po naciśnieciu
@@ -260,7 +280,7 @@ public class Blackjack {
 			btnHit.requestFocus();
 
 			btnStand = new JButton("Stand"); // Stand button
-			btnStand.setBounds(470, 200, 140, 35);
+			btnStand.setBounds(470, 515, 140, 35);
 			btnStand.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					// cos po nacisnieciu
