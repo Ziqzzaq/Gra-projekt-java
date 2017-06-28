@@ -1,6 +1,6 @@
 package src;
 
-import java.net.URL;
+
 
 
 
@@ -13,7 +13,7 @@ public class Card {
 	/** Definicja  pola dla nazwy i rankingu*/
 		public String rank = "", suit = "";
 		public int value = 0;
-		URL tak = getClass().getResource("src/main/resources/cardImages/backCover.png");
+		
 		/** 
 		 * Konstruktor - inicjalizacja wartości
 		 * @param r wartosc karty slownie uzyta by wskazac odpowiedni nr pliku zdjecia
