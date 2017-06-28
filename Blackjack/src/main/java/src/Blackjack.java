@@ -229,15 +229,17 @@ public class Blackjack {
 	}
 	
 	/**
-     * Metoda zmiana ze stringa na inta w polu tekstowym tfBalance musi byc liczba calkowita
+     * Metoda zabespieczajaca by nie wpisywac innych wartosci niz liczby w polach tekstowych
+     * @param s - napis z pola tekstowego
+     * @return zwraca czy jest blad czy nie
      */
 	public static boolean convertStringtoInt(String s) { 
 		try {
-			if (Integer.parseInt(s) > 0) // Ensure amount entered is > 0
+			if (Integer.parseInt(s) > 0) // no jezeli liczyb beda powyzej 0 to akcept
 				return true;
 			else
 				return false;
-		} catch (NumberFormatException e) { // If not valid integer
+		} catch (NumberFormatException e) { // jezeli nie ma numeru to blad
 			return false;
 		}
 	}
@@ -394,6 +396,7 @@ public class Blackjack {
 		
 		/**
 	     * Metoda do mechaniki gry automatycznie sie wlacza jezeli gracz ma powyzej 21 lub rowna 21 wwartosc kart
+	     * @return zwraca tru lub false sprawdzajac czy gracz ma powyzej 21 lub == 21  podczas gry
 	     * 
 	     */
 		public static boolean simpleOutcomes() { 
@@ -429,7 +432,7 @@ public class Blackjack {
 				outcomeHappened(); //na koniec rundy wyswietl rezultat i przycisk continue
 			}
 			return outcomeHasHappened;
-
+			
 		}
 		
 		
@@ -457,7 +460,7 @@ public class Blackjack {
 		
 		/**
 	     * Metoda ktora sie uruchamia po nacisnieciu przycisku Hit jest w niej czyli dodaje karte nowa i pobiera dla niej obraz
-	     * no i sprawdza mechanike >21 lub ==21
+	     * no i sprawdza mechanike powyzej 21 lub ==21
 	     */
 		
 		public static void hit() { // dodaje nowa karte do kart gracza i sprawdza wynik.

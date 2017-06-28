@@ -1,5 +1,5 @@
-
 package src;
+
 import java.awt.*;
 
 import javax.swing.*;
@@ -8,7 +8,8 @@ import javax.swing.*;
  * KLASA ImagePanel - Ta klasa dziedziczy po JPanel i tworzy ze zdjecia tlo
  * 
  */
-class ImagePanel extends JPanel {
+
+public class ImagePanel extends JPanel {
 
 	/**
 	 * 

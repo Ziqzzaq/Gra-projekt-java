@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		setResizable(false);
-		
+	
 		ImagePanel bgImagePanel = new ImagePanel("src/main/resources/cardImages/background.png");
 		bgImagePanel.setBounds(0, 0, this.getWidth(), this.getHeight());
 		setContentPane(bgImagePanel);

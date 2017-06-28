@@ -1,5 +1,9 @@
 package src;
 
+import java.net.URL;
+
+
+
 /**
  * KLASA Card - Ta klasa jest tworzona dla każdej karty i przechowuje informacje o niej
  * 
@@ -9,7 +13,7 @@ public class Card {
 	/** Definicja  pola dla nazwy i rankingu*/
 		public String rank = "", suit = "";
 		public int value = 0;
-		
+		URL tak = getClass().getResource("src/main/resources/cardImages/backCover.png");
 		/** 
 		 * Konstruktor - inicjalizacja wartości
 		 * @param r wartosc karty slownie uzyta by wskazac odpowiedni nr pliku zdjecia
@@ -27,14 +31,17 @@ public class Card {
 		public void print() { 
 			System.out.printf("%s of %s, value %d\n", this.rank, this.suit, this.value);
 		}
+		
 		/** 
 		 * Metoda  Pobranie nazwy pliku obrazu dla karty
-		 * //Jeżeli wartość karty wynosi 0 tzn, że jest odwrócona i należy przypisać jej odpowiedni obrazek
+		 * Jeżeli wartość karty wynosi 0 tzn, że jest odwrócona i należy przypisać jej odpowiedni obrazek
+		 * @return zwraca odpowiednie zdjecie
 		 */
 		public String getFileName() { 
 			if (value == 0) 
 				return "src/main/resources/cardImages/backCover.png";
 			return String.format("src/main/resources/cardImages/%s/%s.png", this.suit,this.rank);
+		
 		}
 
 }
