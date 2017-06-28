@@ -1,22 +1,38 @@
 package src;
 
-public class Card { // Ta klasa jest tworzona dla każdej karty i przechowuje informacje o niej
-	// Zmienne do przechowywania rangi, koloru i wartości karty 
+/**
+ * KLASA Card - Ta klasa jest tworzona dla każdej karty i przechowuje informacje o niej
+ * 
+ */
+
+public class Card { 
+	/** Definicja  pola dla nazwy i rankingu*/
 		public String rank = "", suit = "";
 		public int value = 0;
 		
-		Card(String r, String s, int v) { // Konstruktor - inicjalizacja wartości
+		/** 
+		 * Konstruktor - inicjalizacja wartości
+		 * @param r wartosc karty slownie uzyta by wskazac odpowiedni nr pliku zdjecia
+		 * @param s odpowiednia kategoria kart np trefl pik itp
+		 * @param v wartosc kart w intach
+		 */
+		Card(String r, String s, int v) { 
 			this.rank = r;
 			this.suit = s;
 			this.value = v;
 		}
-		
-		public void print() { // Wyswietla informacje o karcie w konsoli- pomocne przy debugowaniu 
+		/** 
+		 * Metoda Wyswietla informacje o karcie w konsoli- pomocne przy debugowaniu 
+		 */
+		public void print() { 
 			System.out.printf("%s of %s, value %d\n", this.rank, this.suit, this.value);
 		}
-		
-		public String getFileName() { //Pobranie nazwy pliku obrazu dla karty
-			if (value == 0) //Jeżeli wartość karty wynosi 0 tzn, że jest odwrócona i należy przypisać jej odpowiedni obrazek
+		/** 
+		 * Metoda  Pobranie nazwy pliku obrazu dla karty
+		 * //Jeżeli wartość karty wynosi 0 tzn, że jest odwrócona i należy przypisać jej odpowiedni obrazek
+		 */
+		public String getFileName() { 
+			if (value == 0) 
 				return "src/main/resources/cardImages/backCover.png";
 			return String.format("src/main/resources/cardImages/%s/%s.png", this.suit,this.rank);
 		}

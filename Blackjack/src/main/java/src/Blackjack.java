@@ -1,4 +1,16 @@
 package src;
+/**
+ * @author Rafał Warzyński, Michał Borzędzki
+ * @version 1.0
+ * @since 1.0
+ * 
+ * 
+ */
+
+
+
+
+
 
 import java.awt.Color;
 import java.awt.Font;
@@ -14,7 +26,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-
+/**
+ * Klasa Blackjack wywołuje wygląd okna. + zarządza mechaniką gry + zawiera main czyli wywołuje cały program
+ * 
+ */
 public class Blackjack {
 	
 	
@@ -22,42 +37,76 @@ public class Blackjack {
 	private static JFrame frame = new MainFrame();
 	
 	
-	
-	private static JButton btnNewGame;	//	przycisk nowa gra
+	/** Definicja  Obiektu przycisk nowa gra*/
+	private static JButton btnNewGame;
+	/** Definicja  Obiektu przycisk Końca gry*/
 	private static JButton btnEndGame;	//	przycisk koniec gry
+	/** Definicja  Obiektu pola tekstowe do zapisania kasy ktora mamy na poczatkua*/
 	private static JTextField tfBalance;	//	pole tekstowe do zapisania kasy ktora mamy na poczatku
+	
+	/** Definicja  Obiektu teksty do pczatkowej kasy*/
 	private static JLabel lblInitialBalance;  // tekst do pczatkowej kasy
 	
+	/** Definicja  pola zapis ile masz w banku*/
 	private static double kieszen = 0.0; // zapis ile masz w banku
 	
+	/** Definicja  pola do obstawiania i liczaca ilosc rund*/
 	private static int betAmount = 0, roundCount = 0;  // zmienne do obstawiania
 	
+	/** Definicja  obiektu napisy ile ma*/
 	private static JLabel lblHowInitial; // napisy ile ma
+	
+	/** Definicja  obiektu ile masz kasy w kieszeni*/
 	private static JLabel lblHowKasaWKieszeni;  // ile masz kasy w kieszeni
 	
+	/** Definicja  obiektu napis nasz ze projetk*/
 	private static JLabel lblPrzedstawienie; // napis nasz ze projetk
 	
+	/** Definicja  obiektu informacje o błedach itp.*/
 	private static JLabel lblInfo; // informacje o błedach itp.
-
 	
+	/** Definicja  obiektu napis .*/
 	private static JLabel lblEnterBet; // napis
+	
+	/** Definicja  obiektu do wpisywania ile obstawisz.*/
 	private static JTextField tfBetAmount; // pole do wpisywania ile obstawisz
+	
+	/** Definicja  Obiektu przycisku continure*/
 	private static JButton btnContinue;
+	
+	/** Definicja  Obiektu przycisku Deal*/
 	private static JButton btnDeal;  // przycisk do obstawiania
+	
+	/** Definicja  Obiektu przycisku Hit*/
 	private static JButton btnHit;
+	
+	/** Definicja  Obiektu przycisku Stand*/
 	private static JButton btnStand;
 	
+	/** Definicja  Obiektu napisu ile obstawiasz*/
 	private static JLabel lblBetAmount;
+	/** Definicja  Obiektu napisu ile obstawiasz*/
 	private static JLabel lblBetAmountDesc;
+	/** Definicja  Obiektu napisu do informacji*/
 	private static JLabel lblShuffleInfo = null;
 	
+	/** Definicja  Obiektu kart ktore uzyjemy*/
 	private static CardGroup deck, dealerCards, playerCards;
 	
+	/** Definicja  Obiektu panelow dla gracza i dealara*/
 	private static CardGroupPanel dealerCardPanel = null, playerCardPanel = null; // talia kart,  dealera i gracza, panele do kart
+	/** Definicja  Obiektu kart dla dealara*/
 	private static Card dealerHiddenCard; 
 	
+	/** Definicja  Obiektu napisu Dealer*/
 	private static JLabel lblDealer;
+	/** Definicja Obiektu napisu Dealer*/
 	private static JLabel lblPlayer;
+	
+	
+	/**
+     * Metoda ustawienia  głównych przyciskow po lewej stronie
+     */
 	
 	public static void initGuiObjects() { // ustawienie  głównych przyciskow po lewej stronie
 		btnNewGame = new JButton("New Game"); // przycisk nowa gra
@@ -109,7 +158,11 @@ public class Blackjack {
 		
 	}
 	
-	public static void showBetGui() {  // funkcja do przycisków obstawiania  po prawej stronie
+	/**
+     * Metoda ustawienia  przycisków obstawiania  po prawej stronie
+     */
+	
+	public static void showBetGui() {  
 		
 		btnEndGame.setEnabled(true);  // gdy new game to wączymy end game
 		
@@ -175,8 +228,10 @@ public class Blackjack {
 		frame.repaint();
 	}
 	
-	
-	public static boolean convertStringtoInt(String s) { // zmiana ze stringa na inta w polu tekstowym tfBalance musi byc liczba calkowita
+	/**
+     * Metoda zmiana ze stringa na inta w polu tekstowym tfBalance musi byc liczba calkowita
+     */
+	public static boolean convertStringtoInt(String s) { 
 		try {
 			if (Integer.parseInt(s) > 0) // Ensure amount entered is > 0
 				return true;
@@ -188,7 +243,10 @@ public class Blackjack {
 	}
 	
 	
-	
+	/**
+     * Metoda po nacisnieciu przycisku New game tu jest metoda showBetGui by pokazywaly sie przyciski po prawej no i 
+     * 
+     */
 	
 	public static void newGame(){ // nowa funkcja zapisze bo ci nie chce psuc Michal
 		
@@ -212,6 +270,11 @@ public class Blackjack {
 		deck.shuffle(); // tasowanie kart
 		
 	}
+	
+	/**
+     * Metoda po nacisnieciu przycisku deal tu jest metoda do pokazania przyciskow hit stand i ma metody by pokazac karty
+     * 
+     */
 		public static void deal() { // Działa po naciśnięciu przycisku Deal. Przycisk Deal wstępnie ma wyswtietlic aktualna gre ale to sie zobaczy..
 			
 			if (lblShuffleInfo != null) // Co 5 rund deck jest przetasowywany
@@ -329,7 +392,10 @@ public class Blackjack {
 		}
 		
 		
-		
+		/**
+	     * Metoda do mechaniki gry automatycznie sie wlacza jezeli gracz ma powyzej 21 lub rowna 21 wwartosc kart
+	     * 
+	     */
 		public static boolean simpleOutcomes() { 
 			
 			boolean outcomeHasHappened = false;
@@ -367,6 +433,9 @@ public class Blackjack {
 		}
 		
 		
+		/**
+	     * Metoda ktora po zakonczeniu rundy wyswietla przycisk continue
+	     */
 		
 		public static void outcomeHappened() { //Wyswietla przycisk continue i rezultat
 			btnHit.setEnabled(false);
@@ -386,6 +455,11 @@ public class Blackjack {
 
 		}
 		
+		/**
+	     * Metoda ktora sie uruchamia po nacisnieciu przycisku Hit jest w niej czyli dodaje karte nowa i pobiera dla niej obraz
+	     * no i sprawdza mechanike >21 lub ==21
+	     */
+		
 		public static void hit() { // dodaje nowa karte do kart gracza i sprawdza wynik.
 
 			playerCards.cards.add(deck.takeCard());
@@ -394,7 +468,10 @@ public class Blackjack {
 			simpleOutcomes();
 
 		}
-		
+		/**
+	     * Metoda ktora sie uruchamia po nacisnieciu przycisku stand zostawia karty i wlacza mechanike gry
+	     * 
+	     */
 		public static void stand() { // Kiedy przyciśniety standButton
 			if (simpleOutcomes()) // Sprawdza wyniki 
 				return;
@@ -437,6 +514,10 @@ public class Blackjack {
 
 		}
 		
+		/**
+	     * Metoda ktora wyswietla karty przeciwnika i odtwarza obraz
+	     * 
+	     */
 		
 		public static void updateCardPanels() { // wyswietla karty przeciwnika i odtwarza obraz
 			if (dealerCardPanel != null) { // jezeli już jest dodane usuwa je
@@ -451,6 +532,11 @@ public class Blackjack {
 			frame.repaint();
 		}
 
+		
+		/**
+	     * Metoda ktora wywoluje sie po nacisieciu continue czyli kasuje karty na stole i restartuje wynik
+	     * 
+	     */
 		
 		public static void continPoWyniku() { // Po osiagnieciu wyniku
 
@@ -506,7 +592,10 @@ public class Blackjack {
 			}
 		}
 		
-	
+		/**
+	     * Metoda uruchamiajaca
+	     * @param args - domyślna tablica Stringów w celu poprawnego wywołania metody statycznej main(). 
+	     */
 	public static void main(String[] args){
 
 		

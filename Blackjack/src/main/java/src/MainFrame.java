@@ -2,6 +2,11 @@ package src;
 
 import javax.swing.*;
 
+/**
+ * KLASA MainFrame - tworzy glowne okno po Jframe
+ * 
+ */
+
 public class MainFrame extends JFrame {
 	
 	//tworzenie okna 
@@ -11,6 +16,11 @@ public class MainFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	
+	/**
+	 * Konstruktor - tworzy okno i pobiera zdjecie tla
+	 * 
+	 */
 	MainFrame() {
 		setTitle("Blackjack");
 		setSize(900, 700);

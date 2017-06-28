@@ -4,11 +4,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class CardGroup {
+/**
+ * KLASA CardGroup - Ta klasa jest tworzona dla nadania wartosci kart i modernizacji jej w liscie
+ * 
+ */
 
+
+public class CardGroup {
+	
+	/** Definicja  Listy obiektow cards ktora bedzie posiadac nasze karty*/
 	public ArrayList<Card> cards = new ArrayList<Card>(); // wstępna lista kart
 
-	public void initFullDeck() { // nadanie wartości kart
+	/** 
+	 * Metoda do nadanie wartości kart
+	 */
+	public void initFullDeck() { 
 		this.cards.clear();
 		String[] ranks = { "As", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Walet", "Dama", "Król" };
 		int[] rankValues = { 11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
@@ -22,7 +32,10 @@ public class CardGroup {
 		}
 	}
 
-	public Card takeCard() { // Usuwa kartę z góry ArrayList i zwraca ją
+	/** 
+	 * Metoda ktora Usuwa kartę z góry ArrayList i zwraca ją
+	 */
+	public Card takeCard() { 
 		if (this.cards.size() < 1) {
 			System.out.println("Error: no more cards!");
 			System.exit(0);
@@ -32,31 +45,44 @@ public class CardGroup {
 		return tempCard;
 	}
 
+	/** 
+	 * Metoda ktora tasuje karty
+	 */
+	
 	public void shuffle() {
 		long seed = System.nanoTime(); // Ustalenie wartości random by przybliżyć jak najbardziej do rzeczywistego tasowania
 		Collections.shuffle(this.cards, new Random(seed)); // tasowanie Decku
 	}
-
-	public int getTotalValue() { // metoda licząca sume wartosci kart
+	/** 
+	 * metoda licząca sume wartosci kart
+	 */
+	public int getTotalValue() { 
 		int totalValue = 0;
 		for (int i = 0; i < this.cards.size(); i++)
 			totalValue += this.cards.get(i).value;
 		return totalValue;
 	}
 
-	public int getNumAces() { // jezeli jest As zwiększ NumAces bo As może przyjąc wartość 1 lub 11 w zależności od kart
+	/** 
+	 * metoda  ze jezeli jest As zwiększ NumAces bo As może przyjąc wartość 1 lub 11 w zależności od kart
+	 */
+	public int getNumAces() { 
 		int numAces = 0;
 		for (int i = 0; i < this.cards.size(); i++)
 			if (this.cards.get(i).rank == "As")
 				numAces++;
 		return numAces;
 	}
-
+	/** 
+	 * metoda   zwraca ilosć kart w liscie
+	 */
 	public int getCount() { // zwraca ilosć kart w liscie
 		return this.cards.size();
 	}
-
-	public void print() { // wyswietla karty w liscie
+	/** 
+	 * metoda  wyswietla karty w liscie 
+	 */
+	public void print() { 
 		for (int i = 0; i < this.cards.size(); i++) {
 			this.cards.get(i).print();
 		}

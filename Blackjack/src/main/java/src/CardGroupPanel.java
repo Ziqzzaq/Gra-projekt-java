@@ -7,15 +7,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * KLASA CardGroupPanel - Ta klasa dziedziczy po JPanel i utworzy panel, która wyswietli obrazy kart jej wielkosc szerokosc itp
+ * 
+ */
+
 public class CardGroupPanel extends JPanel {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
-	//Ta klasa dziedziczy po JPanel i utworzy panel, która wyswietli obrazy kart
-	
+	/** 
+	 * Konstruktor - do tworzenia kary pobierania obrazu i wyswietlania jej w swoim panelu o odpowiedniej wielkosci
+	 * @param left 
+	 * @param top
+	 * @param width
+	 * @param height
+	 * @param gap do szerokosci jak cos
+	 */
+
 		CardGroupPanel(CardGroup cardGroup, int left, int top, int width, int height, int gap) {
 
 			int numCards = cardGroup.cards.size();
