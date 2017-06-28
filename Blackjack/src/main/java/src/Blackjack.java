@@ -284,7 +284,7 @@ public class Blackjack {
 			btnContinue.setBounds(290, 444, 320, 35);
 			btnContinue.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					// cos sie stanie
+					continPoWyniku();
 				}
 			});
 			frame.getContentPane().add(btnContinue);
@@ -452,7 +452,59 @@ public class Blackjack {
 		}
 
 		
-		
+		public static void continPoWyniku() { // Po osiagnieciu wyniku
+
+			lblInfo.setOpaque(false);
+			lblInfo.setForeground(Color.ORANGE);
+			
+			// usuniecie aktualnej rundy
+
+			frame.getContentPane().remove(lblDealer);
+			frame.getContentPane().remove(lblPlayer);
+			frame.getContentPane().remove(btnHit);
+			frame.getContentPane().remove(btnStand);
+			frame.getContentPane().remove(lblBetAmount);
+			frame.getContentPane().remove(lblBetAmountDesc);
+			frame.getContentPane().remove(btnContinue);
+			frame.getContentPane().remove(dealerCardPanel);
+			frame.getContentPane().remove(playerCardPanel);
+			lblInfo.setText("By grać dalej naciśnij Deal ");
+			tfBetAmount.setEnabled(true);
+			btnDeal.setEnabled(true);
+			btnDeal.requestFocus();
+			frame.repaint();
+
+			if (kieszen <= 0) { // jezeli nie masz kasy by grac dalej
+				int choice = JOptionPane.showOptionDialog(null, "Nie masz już pieniedzy dodać 100$ do twojej kasy ?.", "Z funduszy", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+
+				if (choice == JOptionPane.YES_OPTION) {
+					kieszen += 100;
+					lblHowKasaWKieszeni.setText(String.format("$%.2f", kieszen));
+				} else {
+					frame.getContentPane().removeAll();
+					frame.repaint();
+					initGuiObjects();
+					return;
+				}
+			}
+
+			roundCount++; // jezeli runda 5 bedzie to ponownie przetasuje karty
+			if (roundCount >= 5) {
+				deck.initFullDeck();
+				deck.shuffle();
+
+				lblShuffleInfo = new JLabel("Deck zostal uzupelniony i przetasowany!");
+				//lblShuffleInfo.setBackground(new Color(0, 128, 0));
+				lblShuffleInfo.setForeground(Color.ORANGE);
+				//lblShuffleInfo.setOpaque(true);
+				lblShuffleInfo.setFont(new Font("Arial", Font.BOLD, 20));
+				lblShuffleInfo.setHorizontalAlignment(SwingConstants.CENTER);
+				lblShuffleInfo.setBounds(235, 307, 430, 42);
+				frame.getContentPane().add(lblShuffleInfo);
+
+				roundCount = 0;
+			}
+		}
 		
 	
 	public static void main(String[] args){
